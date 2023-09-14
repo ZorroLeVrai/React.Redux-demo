@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../slices/taskSlice";
 
 const InputItem = () => {
   const [taskName, setTaskName] = useState("");
+  const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -12,7 +13,10 @@ const InputItem = () => {
   const handleChange = (event) => setTaskName(event.target.value);
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") dispatch(addTask(taskName));
+    if (event.key === "Enter") {
+      inputRef.current.value = "";
+      dispatch(addTask(taskName));
+    }
   };
 
   return (
@@ -20,6 +24,7 @@ const InputItem = () => {
       <label htmlFor="taskItem">Task name:</label>
       <input
         id="taskNameInput"
+        ref={inputRef}
         type="text"
         name="taskItem"
         value={taskName}

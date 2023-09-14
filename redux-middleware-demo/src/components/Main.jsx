@@ -24,7 +24,7 @@ const Main = () => {
   const handleDispatchFunction = () =>
     dispatch((dispatch, getState) => {
       console.log("Executing function with state", getState());
-      dispatch(simpleAction("Function completed!!!"));
+      dispatch(simpleAction(`Function executed: ${payload}`));
     });
 
   return (

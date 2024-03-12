@@ -19,12 +19,19 @@ const Main = () => {
     if (event.key === "Enter") dispatchAction();
   };
 
-  const handleDispatchAction = () => dispatchAction();
+  const handleDispatchAction = () => {
+    const action = simpleAction("ZZ");
+    console.log("Action:", action);
+  };
 
   const handleDispatchFunction = () =>
     dispatch((dispatch, getState) => {
       console.log("Executing function with state", getState());
-      dispatch(simpleAction(`Function executed: ${payload}`));
+
+      fetch("https://www.google.com/")
+        .then((data) => dispatch(simpleAction(data)))
+        .catch((error) => dispatch(errorCreator(error)));
+      //dispatch(simpleAction(`Function executed: ${payload}`));
     });
 
   return (

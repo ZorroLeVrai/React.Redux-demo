@@ -5,7 +5,7 @@ import { apiRequested, apiCallSucceeded, apiCallFailed } from '../actionCreators
 const api = baseURL => store => next => async action => {
   if (action.type !== apiRequested.type ) return next(action);
 
-  next(action); //call the next middleware only for debugging purposes (Redux DevTools)
+  //next(action); //call the next middleware only for debugging purposes (Redux DevTools)
   const { dispatch, getState } = store;
   const { url, method, data, onSuccess, onError } = action.payload;
   try {

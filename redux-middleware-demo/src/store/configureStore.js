@@ -9,6 +9,6 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware(),
-    logger({test: 42})
+    logger({test: 1})
   ]
 });

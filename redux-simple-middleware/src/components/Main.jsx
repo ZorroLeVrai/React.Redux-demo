@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { simpleAction } from "../store/slices/fakeSlice";
+import { simpleAction, errorAction } from "../store/slices/fakeSlice";
 
 const Main = () => {
   const [payload, setPayload] = useState("");
@@ -20,18 +20,16 @@ const Main = () => {
   };
 
   const handleDispatchAction = () => {
-    const action = simpleAction("ZZ");
-    console.log("Action:", action);
+    const action = simpleAction(payload);
+    dispatch(action);
   };
 
   const handleDispatchFunction = () =>
     dispatch((dispatch, getState) => {
-      console.log("Executing function with state", getState());
-
-      fetch("https://www.google.com/")
-        .then((data) => dispatch(simpleAction(data)))
-        .catch((error) => dispatch(errorCreator(error)));
-      //dispatch(simpleAction(`Function executed: ${payload}`));
+      fetch(`https://jsonplaceholder.typicode.com/posts/${payload}`)
+        .then(response => response.json())
+        .then(response => dispatch(simpleAction(response)))
+        .catch((error) => dispatch(errorAction(error)));
     });
 
   return (
@@ -46,6 +44,8 @@ const Main = () => {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
+      </div>
+      <div>
         <button onClick={handleDispatchAction}>Dispatch action</button>
       </div>
       <div>

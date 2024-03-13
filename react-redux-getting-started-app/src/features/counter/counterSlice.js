@@ -20,7 +20,7 @@ export const counterSlice = createSlice({
       state.value += action.payload
     },
   },
-})
+});
 
 // Action creators are generated for each reducer function
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;

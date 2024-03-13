@@ -6,7 +6,7 @@ export default function Counter() {
   const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
 
-  const handleIncrement = () => dispatch(incrementByAmount(1)); //dispatch(increment());
+  const handleIncrement = () => dispatch(increment());
   const handleDecrement = () => dispatch(decrement());
 
   return (

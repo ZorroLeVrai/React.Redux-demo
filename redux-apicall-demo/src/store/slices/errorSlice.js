@@ -6,7 +6,10 @@ export const errorSlice = createSlice({
     message: ""
   },
   reducers: {
-    errorReceived: (state, action) => state.message = action.payload
+    errorReceived: (state, action) => {
+      console.log("Payload received: ", action.payload);
+      state.message = action.payload
+    }
   }
 });
 

@@ -4,6 +4,7 @@ import errorReducer from './slices/errorSlice';
 import api from './middlewares/api';
 
 const baseURL = "https://jsonplaceholder.typicode.com/";
+//const baseURL = "https://fake.com/";
 
 export const store = configureStore({
   reducer: {

@@ -16,7 +16,7 @@ const List = () => {
         method: "get",
         //data: {},
         onSuccess: "todo/todosReceived",
-        //onError: apiCallFailed.type,
+        onError: "error/errorReceived"//apiCallFailed.type,
       })
     );
   }, []);
